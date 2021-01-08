@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import API from './modules/api';
 
-function init(data) {
-    console.log('hello');
+function init() {
+  ReactDOM.render(<API />, document.querySelector('.app__league'));
 }
 init();
-
