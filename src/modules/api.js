@@ -1,4 +1,5 @@
 import React from 'react';
+import LeaguesList from './leagues/LeaguesList';
 
 export default class API extends React.Component {
   constructor() {
@@ -24,18 +25,14 @@ export default class API extends React.Component {
 
   render() {
     return (
-          <div>
-            <h1>League</h1>
-            {
-              this.state.data.length === 0
-                ? 'Loading leagues...'
-                : this.state.data.map((data) => (
-                  <p key={data.id}>
-                      {data.name}
-                  </p>
-                ))
-            }
-          </div>
+            <div>
+                <h1>Leagues</h1>
+                {
+                    this.state.data.length === 0
+                      ? 'Loading leagues...'
+                      : <LeaguesList leagues={ this.state.data } />
+                }
+            </div>
     );
   }
 }

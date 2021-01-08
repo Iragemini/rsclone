@@ -3,6 +3,6 @@ import ReactDOM from 'react-dom';
 import API from './modules/api';
 
 function init() {
-  ReactDOM.render(<API />, document.getElementById('root'));
+  ReactDOM.render(<API />, document.querySelector('.app__league'));
 }
 init();
