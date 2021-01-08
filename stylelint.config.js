@@ -6,6 +6,7 @@ module.exports = {
   plugins: [
     'stylelint-scss',
     'stylelint-order',
+    'jsx-a11y',
   ],
   rules: {
     // linebreaks: 'unix', // see https://github.com/stylelint/stylelint/issues/5087
@@ -22,6 +23,7 @@ module.exports = {
         ignoreAtRules: ['import'],
       },
     ],
+    'jsx-a11y/rule-name': 2,
 
     'declaration-property-value-disallowed-list': null,
 
