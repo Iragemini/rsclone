@@ -1,16 +1,18 @@
 import React from 'react';
-import LeaguesList from './leagues/LeaguesList';
+import PropTypes from 'prop-types';
+import List from './components/List';
 
-export default class API extends React.Component {
-  constructor() {
+class API extends React.Component {
+  constructor(props) {
     super();
     this.state = {
+      type: props.type,
       data: [],
     };
   }
 
   componentDidMount() {
-    const baseUrl = 'http://api.football-data.org/v2/competitions';
+    const baseUrl = `http://api.football-data.org/v2/${this.state.type[0]}`;
     fetch(baseUrl,
       {
         type: 'GET',
@@ -20,19 +22,25 @@ export default class API extends React.Component {
         dataType: 'json',
       })
       .then((response) => response.json())
-      .then((json) => this.setState({ data: json.competitions }));
+      .then((json) => this.setState({ data: json[this.state.type[0]] }));
   }
 
   render() {
     return (
             <div>
-                <h1>Leagues</h1>
+                <h1>{ this.state.type[1] }</h1>
                 {
                     this.state.data.length === 0
-                      ? 'Loading leagues...'
-                      : <LeaguesList leagues={ this.state.data } />
+                      ? `Loading ${this.state.type[1]}...`
+                      : <List list={ this.state.data } />
                 }
             </div>
     );
   }
 }
+
+API.propTypes = {
+  type: PropTypes.array.isRequired,
+};
+
+export default API;
