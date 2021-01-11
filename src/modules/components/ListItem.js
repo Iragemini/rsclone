@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function LeagueItem({ league }) {
+function LeagueItem({ item }) {
   return (
-        <li>{ league }</li>
+        <li>{ item }</li>
   );
 }
 
 LeagueItem.propTypes = {
-  league: PropTypes.string.isRequired,
+  item: PropTypes.string.isRequired,
 };
 
 export default LeagueItem;
