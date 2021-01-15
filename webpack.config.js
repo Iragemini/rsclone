@@ -14,6 +14,7 @@ module.exports = {
     disableHostCheck: true,
     public: 'http://localhost:8080',
     open: true,
+    historyApiFallback: true,
   },
   entry: {
     app: path.resolve(__dirname, './src/index.js'),
