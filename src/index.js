@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import API from './modules/api';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
 
-function init() {
-  ReactDOM.render(<API type={ ['competitions', 'League'] }/>, document.querySelector('.app__league'));
-}
-init();
+const component = (
+  <BrowserRouter>
+    <App/>
+  </BrowserRouter>
+);
+
+ReactDOM.render(component, document.getElementById('root'));
