@@ -14,10 +14,10 @@ class API extends React.Component {
   }
 
   componentDidMount() {
-    if (this.state.type[0] === '') {
+    if (this.state.type[1] === '') {
       return;
     }
-    const baseUrl = `${config.baseUrl}${this.state.type[0]}`;
+    const baseUrl = `${config.baseUrl}${this.state.type[1]}`;
     fetch(baseUrl,
       {
         type: 'GET',
@@ -27,17 +27,18 @@ class API extends React.Component {
         dataType: 'json',
       })
       .then((response) => response.json())
-      .then((json) => this.setState({ data: json[this.state.type[0]] }));
+      .then((json) => this.setState({ data: json[this.state.type[1]] }));
   }
 
   render() {
     return (
             <div>
-                <h1>{ this.state.type[1] }</h1>
+                <h1>{ this.state.type[2] }</h1>
                 {
-                    this.state.data.length === 0
-                      ? `Loading ${this.state.type[1]}...`
-                      : <List list={ this.state.data } />
+                  
+                  this.state.data.length === 0
+                    ? `Loading ${this.state.type[2]}...`
+                    : <List list={ this.state.data } />
                 }
             </div>
     );

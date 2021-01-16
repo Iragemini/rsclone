@@ -3,9 +3,11 @@ import { Route, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import API from '../modules/api';
 
-function renderItem(menuItem) {
+function renderItem( menuItem ) {
   return (
-        <API type={ [menuItem.type, menuItem.name] }/>
+        <API type={ 
+            [ menuItem.id, menuItem.type, menuItem.name ] 
+        }/>
   );
 }
 
@@ -20,9 +22,9 @@ function NavMenu({ menu }) {
             <nav>
                 <ul className="app__menu">
                     {
-                        menu.map((menuItem) => (
+                        menu.map(( menuItem ) => (
                                 <li key={ menuItem.id }>
-                                    <NavLink key={ menuItem.id } to={`${menuItem.path}`} style={ styles.NavLink }>
+                                    <NavLink key={ menuItem.id } to={`${ menuItem.path }`} style={ styles.NavLink }>
                                     {
                                         menuItem.name
                                     }
@@ -36,8 +38,8 @@ function NavMenu({ menu }) {
                 menu.map((menuItem) => (
                     <Route
                         key={ menuItem.id }
-                        path={menuItem.path}
-                        render={ () => renderItem(menuItem) }
+                        path={ menuItem.path }
+                        render={ () => renderItem( menuItem ) }
                         exact
                     />
                 ))
