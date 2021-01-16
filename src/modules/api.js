@@ -14,6 +14,9 @@ class API extends React.Component {
   }
 
   componentDidMount() {
+    if (this.state.type[0] === '') {
+      return;
+    }
     const baseUrl = `${config.baseUrl}${this.state.type[0]}`;
     fetch(baseUrl,
       {

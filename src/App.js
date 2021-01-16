@@ -7,13 +7,16 @@ class App extends Component {
     this.state = {
       menu: [
         {
-          id: 1, name: 'Список лиг', path: '/leagues', page: 'leagues', type: 'competitions',
+          id: 1, name: 'Главная', path: '/', page: 'main', type: '',
         },
         {
-          id: 2, name: 'Список команд', path: '/teams', page: 'teams', type: 'teams',
+          id: 2, name: 'Лиги', path: '/leagues', page: 'leagues', type: 'competitions',
         },
         {
-          id: 3, name: 'Календарь', path: '/calendar', page: 'calendar', type: '',
+          id: 3, name: 'Команды', path: '/teams', page: 'teams', type: 'teams',
+        },
+        {
+          id: 4, name: 'Календарь', path: '/calendar', page: 'calendar', type: '',
         },
       ],
     };
