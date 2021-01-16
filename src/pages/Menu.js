@@ -9,6 +9,11 @@ function renderItem(menuItem) {
   );
 }
 
+const styles = {
+    NavLink: {
+        textDecoration: 'none'
+    },
+}
 function NavMenu({ menu }) {
   return (
         <div>
@@ -17,7 +22,7 @@ function NavMenu({ menu }) {
                     {
                         menu.map((menuItem) => (
                                 <li key={ menuItem.id }>
-                                    <NavLink key={ menuItem.id } to={`${menuItem.path}`}>
+                                    <NavLink key={ menuItem.id } to={`${menuItem.path}`} style={ styles.NavLink }>
                                     {
                                         menuItem.name
                                     }
@@ -32,8 +37,8 @@ function NavMenu({ menu }) {
                     <Route
                         key={ menuItem.id }
                         path={menuItem.path}
-                        exact
                         render={ () => renderItem(menuItem) }
+                        exact
                     />
                 ))
             }
