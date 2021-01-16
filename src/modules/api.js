@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import List from './components/List';
+import List from '../components/List';
+import config from '../../config/config';
 
 class API extends React.Component {
-  constructor(props) {
+
+  constructor( props ) {
     super();
     this.state = {
       type: props.type,
@@ -12,12 +14,12 @@ class API extends React.Component {
   }
 
   componentDidMount() {
-    const baseUrl = `http://api.football-data.org/v2/${this.state.type[0]}`;
+    const baseUrl = `${config.baseUrl}${this.state.type[0]}`;
     fetch(baseUrl,
       {
         type: 'GET',
         headers: {
-          'X-Auth-Token': '4a5f8917f07742ebb6ab8be1d75a4f41',
+          'X-Auth-Token': config.APIToken,
         },
         dataType: 'json',
       })
@@ -40,7 +42,7 @@ class API extends React.Component {
 }
 
 API.propTypes = {
-  type: PropTypes.array.isRequired,
+  type: PropTypes.array.isRequired
 };
 
 export default API;
