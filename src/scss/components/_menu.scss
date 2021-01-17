@@ -1,0 +1,12 @@
+.app__menu {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    
+    & li:hover {
+        cursor: pointer;
+        color: cadetblue;
+    }
+}

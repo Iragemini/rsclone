@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import List from './components/List';
+import List from '../components/List';
+import config from '../../config/config';
 
 class API extends React.Component {
-  constructor(props) {
+
+  constructor( props ) {
     super();
     this.state = {
       type: props.type,
@@ -12,27 +14,31 @@ class API extends React.Component {
   }
 
   componentDidMount() {
-    const baseUrl = `http://api.football-data.org/v2/${this.state.type[0]}`;
+    if (this.state.type[1] === '') {
+      return;
+    }
+    const baseUrl = `${config.baseUrl}${this.state.type[1]}`;
     fetch(baseUrl,
       {
         type: 'GET',
         headers: {
-          'X-Auth-Token': '4a5f8917f07742ebb6ab8be1d75a4f41',
+          'X-Auth-Token': config.APIToken,
         },
         dataType: 'json',
       })
       .then((response) => response.json())
-      .then((json) => this.setState({ data: json[this.state.type[0]] }));
+      .then((json) => this.setState({ data: json[this.state.type[1]] }));
   }
 
   render() {
     return (
             <div>
-                <h1>{ this.state.type[1] }</h1>
+                <h1>{ this.state.type[2] }</h1>
                 {
-                    this.state.data.length === 0
-                      ? `Loading ${this.state.type[1]}...`
-                      : <List list={ this.state.data } />
+                  
+                  this.state.data.length === 0
+                    ? `Loading ${this.state.type[2]}...`
+                    : <List list={ this.state.data } />
                 }
             </div>
     );
@@ -40,7 +46,7 @@ class API extends React.Component {
 }
 
 API.propTypes = {
-  type: PropTypes.array.isRequired,
+  type: PropTypes.array.isRequired
 };
 
 export default API;
