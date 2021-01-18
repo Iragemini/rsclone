@@ -6,7 +6,7 @@ function LeaguesList(props) {
   return (
         <ul>
             {
-                props.list.map((data) => <ListItem item={data.name} key={data.id} />)
+                props.list && props.list.map((data) => <ListItem item={data.name} key={data.id} />)
             }
         </ul>
   );
