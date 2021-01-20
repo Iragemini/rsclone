@@ -8,29 +8,40 @@ function Leagues() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [list, setList] = useState([]);
   const [fullList, setfullList] = useState([]);
+  const accessToken = config.APIToken;
+  const baseUrl = `${config.baseUrl}competitions`;
 
   useEffect(() => {
-    const baseUrl = `${config.baseUrl}competitions`;
-    fetch(baseUrl,
-      {
-        type: 'GET',
-        headers: {
-          'X-Auth-Token': config.APIToken,
-        },
-        dataType: 'json',
-      })
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setList(result.competitions);
-          setfullList(result.competitions);
-        },
-        (error) => {
-          setErrorMessage(error);
-        },
-      );
-  }, []);
+    const controller = new AbortController();
+
+    async function fetchData() {
+      await fetch(baseUrl,
+        {
+          type: 'GET',
+          headers: {
+            'X-Auth-Token': accessToken,
+          },
+          dataType: 'json',
+        })
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            setIsLoaded(true);
+            setList(result.competitions);
+            setfullList(result.competitions);
+          },
+          (error) => {
+            setErrorMessage(error);
+          },
+        ).catch((e) => {
+          setErrorMessage(`Ошибка загрузки: ${e.message}`);
+        });
+    }
+    fetchData();
+    return () => {
+      controller.abort();
+    };
+  }, [accessToken, baseUrl]);
 
   if (errorMessage) {
     return <div>Ошибка: {errorMessage.message}</div>;
@@ -44,9 +55,9 @@ function Leagues() {
 
   return (
     <div>
-        <h1>Leagues</h1>
-        <Search onValueChange={filterList} />
-        <List list={list} />
+      <h1>Leagues</h1>
+      <Search onValueChange={filterList} />
+      <List list={list} type={ 2 } />
     </div>
   );
 }

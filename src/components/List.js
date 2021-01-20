@@ -2,18 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ListItem from './ListItem';
 
-function LeaguesList(props) {
+function List(props) {
   return (
-        <ul>
-            {
-                props.list && props.list.map((data) => <ListItem item={data.name} key={data.id} />)
-            }
-        </ul>
+    <div>
+      <ul className="list-group">
+          {
+              props.list.map((data) => <ListItem
+                item={ data }
+                type={ props.type }
+                key={ data.id }
+              />)
+          }
+      </ul>
+    </div>
   );
 }
 
-LeaguesList.propTypes = {
+List.propTypes = {
   list: PropTypes.array.isRequired,
+  type: PropTypes.number.isRequired,
 };
 
-export default LeaguesList;
+export default List;

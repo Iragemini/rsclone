@@ -15,16 +15,13 @@ class App extends Component {
         {
           id: 3, name: 'Команды', path: '/teams', page: 'Teams', type: 'teams',
         },
-        {
-          id: 4, name: 'Календарь', path: '/calendar', page: 'Calendar', type: '',
-        },
       ],
     };
   }
 
   render() {
     return (
-      <div>
+      <div  className="container-fluid">
         <NavMenu menu={ this.state.menu }/>
       </div>
     );

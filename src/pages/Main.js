@@ -1,19 +1,22 @@
+import _ from 'lodash';
 import React, { useState, useEffect } from 'react';
 import config from '../../config/config';
-import List from '../components/List';
-import Search from '../components/Search';
+import MatchesTable from './MatchesTable';
 
-function Teams() {
+function MainPage() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [list, setList] = useState([]);
   const [fullList, setfullList] = useState([]);
+  const [sort, setSort] = useState('asc');
+  const [sortField, setSortField] = useState('');
   const accessToken = config.APIToken;
-  const baseUrl = `${config.baseUrl}teams`;
+  const baseUrl = `${config.baseUrl}matches`;
+  const date = new Date();
 
   useEffect(() => {
     const controller = new AbortController();
-    console.log('teams url', baseUrl);
+    console.log('main url', baseUrl);
 
     async function fetchData() {
       await fetch(baseUrl,
@@ -28,8 +31,8 @@ function Teams() {
         .then(
           (result) => {
             setIsLoaded(true);
-            setList(result.teams);
-            setfullList(result.teams);
+            setList(result.matches);
+            setfullList(result.matches);
           },
           (error) => {
             setErrorMessage(error);
@@ -50,17 +53,19 @@ function Teams() {
     return <div>Загрузка...</div>;
   }
 
-  const filterList = (value) => {
-    setList(fullList.filter((item) => item.name.toLowerCase().includes(value.toLowerCase())));
-  };
+  const onSort = (sortField) => {
+    setSortField(sortField);
+    setSort(sort === 'asc' ? 'desc' : 'asc');
+    const orderedData = _.orderBy(fullList, sortField, sort);
+    setList(orderedData);
+  }
 
   return (
     <div>
-      <h1>Teams</h1>
-      <Search onValueChange={filterList} />
-      <List list={list} type={ 3 } />
+        <h1>Список матчей на {date.toLocaleDateString()}</h1>
+        <MatchesTable matches={ list } onSort={ onSort } sort={ sort } sortField = { sortField }/>
     </div>
   );
 }
 
-export default Teams;
+export default MainPage;

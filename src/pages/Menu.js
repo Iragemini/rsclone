@@ -1,23 +1,17 @@
 import React from 'react';
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Leagues from './Leagues';
-import Teams from './Teams';
-
-const styles = {
-  NavLink: {
-    textDecoration: 'none',
-  },
-};
+import MenuRoutes from '../routes/MenuRoutes';
 function NavMenu({ menu }) {
   return (
-        <div>
-            <nav>
-                <ul className="app__menu">
+        <div  className="container-fluid">
+            <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+              <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav">
                     {
                         menu.map((menuItem) => (
-                                <li key={ menuItem.id }>
-                                    <NavLink key={ menuItem.id } to={`${menuItem.path}`} style={ styles.NavLink }>
+                                <li className="nav-item" key={ menuItem.id }>
+                                    <NavLink key={ menuItem.id } to={`${menuItem.path}`} className="nav-link">
                                     {
                                         menuItem.name
                                     }
@@ -26,9 +20,9 @@ function NavMenu({ menu }) {
                         ))
                     }
                 </ul>
+              </div>
             </nav>
-            <Route path="/leagues" component={Leagues} exact />
-            <Route path="/teams" component={Teams} exact />
+            <MenuRoutes/>
         </div>
   );
 }
