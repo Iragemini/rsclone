@@ -1,14 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import TeamInfo from './TeamInfo';
+import LeagueInfo from './LeagueInfo';
 
-function LeagueItem({ item }) {
+function ListItem(props) {
   return (
-        <li>{ item }</li>
+      <li className="list-group-item list-group-item-action list-group-item-light" >
+        {
+          <div>
+            <div>
+              {
+                props.type === 2
+                  ? <LeagueInfo data={props.item} url={props.url}/>
+                  : <TeamInfo data={props.item} url={props.url}/>
+              }
+            </div>
+
+          </div>
+        }
+      </li>
   );
 }
 
-LeagueItem.propTypes = {
-  item: PropTypes.string.isRequired,
+ListItem.propTypes = {
+  item: PropTypes.object.isRequired,
+  url: PropTypes.string.isRequired,
+  type: PropTypes.number.isRequired,
 };
 
-export default LeagueItem;
+export default ListItem;

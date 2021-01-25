@@ -1,19 +1,39 @@
 import React from 'react';
+import { useRouteMatch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ListItem from './ListItem';
+import TeamTable from '../pages/TeamTable';
+import LeagueTable from '../pages/LeagueTable';
 
-function LeaguesList(props) {
+function List(props) {
+  const { path, url } = useRouteMatch();
+
   return (
-        <ul>
-            {
-                props.list && props.list.map((data) => <ListItem item={data.name} key={data.id} />)
-            }
-        </ul>
+    <div>
+      <ul className="list-group">
+          {
+              props.list.map((data) => <ListItem
+                url={url}
+                item={ data }
+                type={props.type}
+                key={ data.id }
+              />)
+          }
+      </ul>
+      <Route path={`${path}/:id`}>
+          {
+            props.type === 2
+              ? <LeagueTable />
+              : <TeamTable />
+          }
+      </Route>
+    </div>
   );
 }
 
-LeaguesList.propTypes = {
+List.propTypes = {
   list: PropTypes.array.isRequired,
+  type: PropTypes.number.isRequired,
 };
 
-export default LeaguesList;
+export default List;

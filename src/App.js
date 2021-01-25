@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import NavMenu from './pages/Menu';
 
+const style = {
+  app: {
+    marginTop: '30px',
+  },
+};
 class App extends Component {
   constructor() {
     super();
@@ -15,16 +20,13 @@ class App extends Component {
         {
           id: 3, name: 'Команды', path: '/teams', page: 'Teams', type: 'teams',
         },
-        {
-          id: 4, name: 'Календарь', path: '/calendar', page: 'Calendar', type: '',
-        },
       ],
     };
   }
 
   render() {
     return (
-      <div>
+      <div className="container" style={ style.app }>
         <NavMenu menu={ this.state.menu }/>
       </div>
     );
