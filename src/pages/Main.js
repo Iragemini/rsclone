@@ -16,7 +16,6 @@ function MainPage() {
 
   useEffect(() => {
     const controller = new AbortController();
-    console.log('main url', baseUrl);
 
     async function fetchData() {
       await fetch(baseUrl,

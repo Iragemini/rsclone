@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 function MatchesTable({
   matches, onSort, sort, sortField,
 }) {
-  console.log('matches', matches);
   if (!Object.values(matches).length) {
     return (
             <div>Ошибка получения данных</div>
