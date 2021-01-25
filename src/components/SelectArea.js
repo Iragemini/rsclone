@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const style = {
-    select: {
-        marginBottom: "35px"
-    }
-}
+  select: {
+    marginBottom: '35px',
+  },
+};
 function SelectArea(props) {
   return (
     <div className="container">
