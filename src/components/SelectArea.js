@@ -9,7 +9,7 @@ const style = {
 function SelectArea(props) {
   return (
     <div className="container">
-      <select onChange={(event) => props.findArea(event.target.value)} className="form-control" style={style.select}>
+      <select onChange={(event) => props.findArea(event.target.value)} className="form-control" style={style.select} id="selectArea">
           <option></option>
           {
               props.areas.map((area, index) => <option key={index} value={area}>{area}</option>)
