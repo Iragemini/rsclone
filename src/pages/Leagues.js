@@ -53,6 +53,8 @@ function Leagues() {
   }
 
   const filterList = (value) => {
+    const selArea = document.getElementById('selectArea');
+    selArea.selectedIndex = 0;
     setList(fullList.filter((item) => item.name.toLowerCase().includes(value.toLowerCase())));
   };
 
@@ -63,7 +65,7 @@ function Leagues() {
   return (
     <div className="row">
       <div className="jumbotron text-center">
-        <h1>Leagues</h1>
+        <h1>Список лиг</h1>
       </div>
       <Search onValueChange={filterList} />
       <SelectArea areas={Array.from(areas)} findArea={findArea}/>
