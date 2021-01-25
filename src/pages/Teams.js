@@ -14,7 +14,6 @@ function Teams() {
 
   useEffect(() => {
     const controller = new AbortController();
-    console.log('teams url', baseUrl);
 
     async function fetchData() {
       await fetch(baseUrl,

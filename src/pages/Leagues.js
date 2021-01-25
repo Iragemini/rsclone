@@ -15,7 +15,6 @@ function Leagues() {
 
   useEffect(() => {
     const controller = new AbortController();
-    console.log('league url', baseUrl);
 
     async function fetchData() {
       await fetch(baseUrl,

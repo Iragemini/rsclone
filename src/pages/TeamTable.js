@@ -8,7 +8,6 @@ function TeamTable() {
   const accessToken = config.APIToken;
   const baseUrl = `${config.baseUrl}teams/${id}/`;
 
-  console.log(id);
   const [errorMessage, setErrorMessage] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [list, setList] = useState({});
@@ -16,7 +15,6 @@ function TeamTable() {
 
   useEffect(() => {
     const controller = new AbortController();
-    console.log('teamTable url', baseUrl);
 
     async function fetchData() {
       await fetch(baseUrl,
@@ -52,8 +50,6 @@ function TeamTable() {
     }
     return true;
   };
-
-  console.log('list = ', list);
 
   if (!isEmpty) {
     area = list.area;
