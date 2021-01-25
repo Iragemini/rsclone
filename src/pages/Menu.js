@@ -1,12 +1,16 @@
 import React from 'react';
-import { Route, NavLink, Switch } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import MenuRoutes from '../routes/MenuRoutes';
+
 function NavMenu({ menu }) {
   return (
-        <div  className="container-fluid">
-            <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-              <div className="collapse navbar-collapse" id="navbarNav">
+        <div>
+            <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span className="navbar-toggler-icon"></span>
+              </button>
+              <div className="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul className="navbar-nav">
                     {
                         menu.map((menuItem) => (

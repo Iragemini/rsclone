@@ -1,18 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import TeamInfo from './TeamInfo';
+import LeagueInfo from './LeagueInfo';
 
 function ListItem(props) {
   return (
       <li className="list-group-item list-group-item-action list-group-item-light" >
         {
-          props.type === 2
-            ? <Link className="text-dark" key={ props.item.id } to={`/leagues/${props.item.id}`}>
-              { props.item.name }
-            </Link>
-            : <Link className="text-dark" key={ props.item.id } to={`/teams/${props.item.id}`}>
-              { props.item.name }
-            </Link>
+          <div>
+            <div>
+              {
+                props.type === 2
+                  ? <LeagueInfo data={props.item} url={props.url}/>
+                  : <TeamInfo data={props.item} url={props.url}/>
+              }
+            </div>
+
+          </div>
         }
       </li>
   );
@@ -20,6 +24,7 @@ function ListItem(props) {
 
 ListItem.propTypes = {
   item: PropTypes.object.isRequired,
+  url: PropTypes.string.isRequired,
   type: PropTypes.number.isRequired,
 };
 

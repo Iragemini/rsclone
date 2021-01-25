@@ -1,27 +1,2 @@
-.league__table, .league__table td, .league__table th{
-    border: 1px solid black;
-    border-collapse: collapse;
-    margin-bottom: 10px;
-}
 
-.area__info {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    text-align: center;
-
-    img {
-      width: 120px;
-      height: 70px;
-    }
-
-    h2 {
-      margin: 0;
-    }
-  }
-
-.calendar {
-  display: flex;
-  flex-direction: column;
-}
   

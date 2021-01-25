@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Route } from 'react-router-dom';
 import config from '../../config/config';
 import List from '../components/List';
 import Search from '../components/Search';
@@ -55,10 +56,14 @@ function Teams() {
   };
 
   return (
-    <div>
-      <h1>Teams</h1>
+    <div className="row">
+      <div className="jumbotron text-center">
+        <h1>Teams</h1>
+      </div>
       <Search onValueChange={filterList} />
-      <List list={list} type={ 3 } />
+      <Route exact path='/teams'>
+        <List list={list} type={ 3 } />
+      </Route>
     </div>
   );
 }

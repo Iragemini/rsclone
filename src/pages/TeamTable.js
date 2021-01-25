@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+
 import config from '../../config/config';
 
-function TeamTable(props) {
-  const id = parseInt(props.match.params.id, 10);
+function TeamTable() {
+  const { id } = useParams();
   const accessToken = config.APIToken;
   const baseUrl = `${config.baseUrl}teams/${id}/`;
 
@@ -12,7 +12,6 @@ function TeamTable(props) {
   const [errorMessage, setErrorMessage] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [list, setList] = useState({});
-  const [fullList, setfullList] = useState({});
   let area = null;
 
   useEffect(() => {
@@ -33,7 +32,6 @@ function TeamTable(props) {
           (result) => {
             setIsLoaded(true);
             setList(result);
-            setfullList(result);
           },
           (error) => {
             setErrorMessage(error);
@@ -102,9 +100,5 @@ function TeamTable(props) {
     </div>
   );
 }
-
-TeamTable.propTypes = {
-  match: PropTypes.object.isRequired,
-};
 
 export default TeamTable;

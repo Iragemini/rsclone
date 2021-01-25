@@ -53,17 +53,21 @@ function MainPage() {
     return <div>Загрузка...</div>;
   }
 
-  const onSort = (sortField) => {
-    setSortField(sortField);
+  const onSort = (field) => {
+    setSortField(field);
     setSort(sort === 'asc' ? 'desc' : 'asc');
-    const orderedData = _.orderBy(fullList, sortField, sort);
+    const orderedData = _.orderBy(fullList, field, sort);
     setList(orderedData);
-  }
+  };
 
   return (
-    <div>
+    <div className="row">
+      <div className="jumbotron text-center">
         <h1>Список матчей на {date.toLocaleDateString()}</h1>
+      </div>
+      <div className="container">
         <MatchesTable matches={ list } onSort={ onSort } sort={ sort } sortField = { sortField }/>
+      </div>
     </div>
   );
 }

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import LeaguesRoutes from './LeagueRoutes';
-import TeamsRoutes from './TeamsRoutes';
+import Leagues from '../pages/Leagues';
+import Teams from '../pages/Teams';
 import MainPage from '../pages/Main';
 
 const MenuRoutes = () => (
     <Switch>
         <Route path="/" component={MainPage} exact />
-        <Route path="/leagues" component={LeaguesRoutes} exact />
-        <Route path="/teams" component={TeamsRoutes} exact />
+        <Route path="/leagues" component={Leagues} exact />
+        <Route path="/teams" component={Teams} exact />
     </Switch>
 );
 

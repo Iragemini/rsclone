@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import NavMenu from './pages/Menu';
 
+const style = {
+  app: {
+    marginTop: '30px',
+  },
+};
 class App extends Component {
   constructor() {
     super();
@@ -21,7 +26,7 @@ class App extends Component {
 
   render() {
     return (
-      <div  className="container-fluid">
+      <div className="container" style={ style.app }>
         <NavMenu menu={ this.state.menu }/>
       </div>
     );

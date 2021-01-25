@@ -1,14 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const style = {
+  input: {
+    marginBottom: '35px',
+  },
+};
 function Search(props) {
   return (
-    <div className="container-fluid">
+    <div className="container">
       <input
-        className="form-control"
+        className="form-control field__text"
+        style={style.input}
         placeholder="Search"
         type="text"
-        className="field__text"
         onChange={(event) => props.onValueChange(event.target.value)}
       />
     </div>
