@@ -18,6 +18,36 @@
   }
 }
 
+h1 {
+  margin: .5rem 0;
+}
+
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+
+  &__arr {
+    padding: 0 20px;
+    border: none;
+    background: transparent;
+    font-size: 30px;
+    transition: transform .3s;
+    outline: none !important;
+
+    &:hover {
+      transform: scale(1.1)
+    }
+  }
+}
+
+.day-table {
+  th {
+    white-space: nowrap;
+  }
+}
+
 .no-padding {
   @media (min-width: 768px) {
     padding: 0 !important;
@@ -58,8 +88,6 @@
     background: rgb(33, 37, 41);
   }
 }
-
-
 
 ::-webkit-scrollbar {
   width: 10px;
