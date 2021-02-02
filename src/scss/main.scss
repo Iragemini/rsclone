@@ -4,3 +4,21 @@
 @import 'base/base';
 @import 'base/typography';
 
+@media (max-width: 768px) {
+  .navbar {
+    padding: .5rem;
+    z-index: 1;
+  }
+
+  .navbar-toggler:focus {
+    box-shadow: none;
+  }
+
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    padding: .5rem;
+    background: rgb(33, 37, 41);
+  }
+}

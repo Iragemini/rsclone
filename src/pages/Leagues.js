@@ -63,12 +63,14 @@ function Leagues() {
   }
 
   return (
-    <div className="row">
+    <div>
       <div className="jumbotron text-center">
         <h1>Список лиг</h1>
       </div>
-      <Search onValueChange={filterList} />
-      <SelectArea areas={Array.from(areas)} findArea={findArea}/>
+      <div className="row">
+        <div className="col-md"><Search onValueChange={filterList} /></div>
+        <div className="col-md"><SelectArea areas={Array.from(areas)} findArea={findArea}/></div>
+      </div>
       <List list={list} type={ 2 } />
     </div>
   );

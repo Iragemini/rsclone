@@ -58,8 +58,8 @@ function Teams() {
     <div className="row">
       <div className="jumbotron text-center">
         <h1>Список команд</h1>
+        <Search onValueChange={filterList} />
       </div>
-      <Search onValueChange={filterList} />
       <Route exact path='/teams'>
         <List list={list} type={ 3 } />
       </Route>

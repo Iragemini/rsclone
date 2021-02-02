@@ -8,15 +8,13 @@ const style = {
 };
 function Search(props) {
   return (
-    <div className="container">
-      <input
+    <input
         className="form-control field__text"
         style={style.input}
         placeholder="Search"
         type="text"
         onChange={(event) => props.onValueChange(event.target.value)}
       />
-    </div>
   );
 }
 
