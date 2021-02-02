@@ -10,8 +10,8 @@ function MatchesTable({
     );
   }
   return (
-        <div className="table-responsive-md">
-            <table className="table table-hover table-bordered">
+        <div className="table-responsive-lg">
+            <table className="table table-hover table-bordered day-table">
                 <caption>Количество матчей: {matches.length}</caption>
                 <thead>
                     <tr className="table-dark">

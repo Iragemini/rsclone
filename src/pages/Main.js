@@ -10,36 +10,38 @@ function MainPage() {
   const [fullList, setfullList] = useState([]);
   const [sort, setSort] = useState('asc');
   const [sortField, setSortField] = useState('');
+  let currentDate = new Date();
+  currentDate = currentDate.toISOString().substring(0, 10);
+  const [newDate, setNewDate] = useState(currentDate);
+  const [baseUrl, setBaseUrl] = useState(`${config.baseUrl}matches?dateFrom=${currentDate}&dateTo=${currentDate}`);
   const accessToken = config.APIToken;
-  const baseUrl = `${config.baseUrl}matches`;
-  const date = new Date();
+
+  async function fetchData() {
+    await fetch(baseUrl,
+      {
+        type: 'GET',
+        headers: {
+          'X-Auth-Token': accessToken,
+        },
+        dataType: 'json',
+      })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setList(result.matches);
+          setfullList(result.matches);
+        },
+        (error) => {
+          setErrorMessage(error);
+        },
+      ).catch((e) => {
+        setErrorMessage(`Ошибка загрузки: ${e.message}`);
+      });
+  }
 
   useEffect(() => {
     const controller = new AbortController();
-
-    async function fetchData() {
-      await fetch(baseUrl,
-        {
-          type: 'GET',
-          headers: {
-            'X-Auth-Token': accessToken,
-          },
-          dataType: 'json',
-        })
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            setIsLoaded(true);
-            setList(result.matches);
-            setfullList(result.matches);
-          },
-          (error) => {
-            setErrorMessage(error);
-          },
-        ).catch((e) => {
-          setErrorMessage(`Ошибка загрузки: ${e.message}`);
-        });
-    }
     fetchData();
     return () => {
       controller.abort();
@@ -59,15 +61,32 @@ function MainPage() {
     setList(orderedData);
   };
 
+  const showDate = (dir) => {
+    let currDate = new Date(newDate);
+
+    if (dir === 'next') {
+      currDate.setDate(currDate.getDate() + 1);
+    } else if (dir === 'prev') {
+      currDate.setDate(currDate.getDate() - 1);
+    }
+
+    currDate = currDate.toISOString().substring(0, 10);
+
+    setNewDate(currDate);
+    setBaseUrl(`${config.baseUrl}matches?dateFrom=${currDate}&dateTo=${currDate}`);
+  };
+
   return (
-    <main className="row">
-      <div className="jumbotron text-center">
-        <h1>Список матчей на {date.toLocaleDateString()}</h1>
+    <div className="row">
+      <div className="jumbotron calendar-nav">
+        <button className="calendar-nav__arr" onClick={() => showDate('prev')}>&laquo;</button>
+        <h1>Список матчей на {newDate}</h1>
+        <button className="calendar-nav__arr" onClick={() => showDate('next')}>&raquo;</button>
       </div>
       <div className="container">
         <MatchesTable matches={ list } onSort={ onSort } sort={ sort } sortField = { sortField }/>
       </div>
-    </main>
+    </div>
   );
 }
 
