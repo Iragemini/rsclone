@@ -59,7 +59,7 @@ function Leagues() {
   };
 
   function findArea(value) {
-    if(value === "Filter") {
+    if (value === 'Filter') {
       setList(fullList);
       return;
     }

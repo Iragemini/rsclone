@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Route } from 'react-router-dom';
 import config from '../../config/config';
 import List from '../components/List';
 import Search from '../components/Search';

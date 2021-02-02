@@ -3,7 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 
 function LeagueTable() {
   const { id } = useParams();
-  let history = useHistory();
+  const history = useHistory();
   return (
       <div>
         {id}
