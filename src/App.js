@@ -3,11 +3,6 @@ import MenuRoutes from './routes/MenuRoutes';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-const style = {
-  app: {
-    marginTop: '30px',
-  },
-};
 class App extends Component {
   constructor() {
     super();
@@ -28,7 +23,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container" style={ style.app }>
+      <div className="wrapper container">
         <Header menu={ this.state.menu }/>
 
         <MenuRoutes/>
