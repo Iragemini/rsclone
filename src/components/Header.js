@@ -1,9 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import MenuRoutes from '../routes/MenuRoutes';
 
-function NavMenu({ menu }) {
+function Header({ menu }) {
   return (
         <div>
             <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -26,13 +25,12 @@ function NavMenu({ menu }) {
                 </ul>
               </div>
             </nav>
-            <MenuRoutes/>
         </div>
   );
 }
 
-NavMenu.propTypes = {
+Header.propTypes = {
   menu: PropTypes.array.isRequired,
 };
 
-export default NavMenu;
+export default Header;

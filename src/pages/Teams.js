@@ -60,9 +60,7 @@ function Teams() {
         <h1>Список команд</h1>
         <Search onValueChange={filterList} />
       </div>
-      <Route exact path='/teams'>
-        <List list={list} type={ 3 } />
-      </Route>
+      <List list={list} type={ 3 } />
     </div>
   );
 }

@@ -1,17 +1,15 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Redirect, useLocation } from 'react-router-dom';
 import Leagues from '../pages/Leagues';
 import Teams from '../pages/Teams';
 import MainPage from '../pages/Main';
 
-const currentPath = window.location.pathname;
-
 const MenuRoutes = () => (
-    <Switch>
-        <Route path={`${currentPath}/`} component={MainPage} exact />
-        <Route path="/leagues" component={Leagues} exact />
-        <Route path="/teams" component={Teams} exact />
-    </Switch>
+    <div>
+        <Route path={`/`} component={MainPage} exact />
+        <Route path={`/leagues`} component={Leagues}  />
+        <Route path={`/teams`} component={Teams}  />
+    </div>
 );
 
 export default MenuRoutes;

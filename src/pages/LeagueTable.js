@@ -1,10 +1,16 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 function LeagueTable() {
   const { id } = useParams();
+  let history = useHistory();
   return (
-      <div>{id}</div>
+      <div>
+        {id}
+        <button type="button" onClick={() => history.goBack()}>
+          Go back
+        </button>
+      </div>
   );
 }
 

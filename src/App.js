@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import NavMenu from './pages/Menu';
+import MenuRoutes from './routes/MenuRoutes';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 const style = {
   app: {
@@ -27,7 +29,11 @@ class App extends Component {
   render() {
     return (
       <div className="container" style={ style.app }>
-        <NavMenu menu={ this.state.menu }/>
+        <Header menu={ this.state.menu }/>
+            
+        <MenuRoutes/>
+
+        <Footer />
       </div>
     );
   }
