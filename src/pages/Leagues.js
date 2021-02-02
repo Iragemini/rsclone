@@ -59,6 +59,10 @@ function Leagues() {
   };
 
   function findArea(value) {
+    if (value === 'Filter') {
+      setList(fullList);
+      return;
+    }
     setList(fullList.filter((item) => item.area.name.toLowerCase().includes(value.toLowerCase())));
   }
 

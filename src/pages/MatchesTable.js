@@ -9,7 +9,6 @@ function MatchesTable({
             <div>Ошибка получения данных</div>
     );
   }
-  let date = null;
   return (
         <div className="table-responsive-md">
             <table className="table table-hover table-bordered">
@@ -125,7 +124,7 @@ function MatchesTable({
                                 </td>
                                 <td>
                                     {
-                                        date = new Date(match.lastUpdated).toLocaleDateString()
+                                        new Date(match.lastUpdated).toLocaleDateString()
                                     }
                                 </td>
                             </tr>
