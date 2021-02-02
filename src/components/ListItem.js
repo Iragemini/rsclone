@@ -8,14 +8,11 @@ function ListItem(props) {
       <li className="list-group-item list-group-item-action list-group-item-light" >
         {
           <div>
-            <div>
-              {
-                props.type === 2
-                  ? <LeagueInfo data={props.item} url={props.url}/>
-                  : <TeamInfo data={props.item} url={props.url}/>
-              }
-            </div>
-
+            {
+              props.type === 2
+                ? <LeagueInfo data={props.item} url={props.url}/>
+                : <TeamInfo data={props.item} url={props.url}/>
+            }
           </div>
         }
       </li>

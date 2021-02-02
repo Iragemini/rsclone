@@ -9,24 +9,30 @@ function List(props) {
   const { path, url } = useRouteMatch();
 
   return (
-    <div>
-      <ul className="list-group">
-          {
-              props.list.map((data) => <ListItem
-                url={url}
-                item={ data }
-                type={props.type}
-                key={ data.id }
-              />)
-          }
-      </ul>
-      <Route path={`${path}/:id`}>
+    <div className="row">
+      <div className="col-md">
+        <div className="lists-wrapper">
+          <ul className="list-group">
+              {
+                  props.list.map((data) => <ListItem
+                    url={url}
+                    item={ data }
+                    type={props.type}
+                    key={ data.id }
+                  />)
+              }
+          </ul>
+        </div>
+      </div>
+      <div className="col-md col-md-auto no-padding">
+        <Route path={`${path}/:id`}>
           {
             props.type === 2
               ? <LeagueTable />
               : <TeamTable />
           }
-      </Route>
+        </Route>
+      </div>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 function Header({ menu }) {
   return (
-        <div>
+        <header>
             <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span className="navbar-toggler-icon"></span>
@@ -14,7 +14,7 @@ function Header({ menu }) {
                     {
                         menu.map((menuItem) => (
                                 <li className="nav-item" key={ menuItem.id }>
-                                    <NavLink key={ menuItem.id } to={`${menuItem.path}`} className="nav-link">
+                                    <NavLink key={ menuItem.id } to={`${menuItem.path}`} className="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">
                                     {
                                         menuItem.name
                                     }
@@ -25,7 +25,7 @@ function Header({ menu }) {
                 </ul>
               </div>
             </nav>
-        </div>
+        </header>
   );
 }
 

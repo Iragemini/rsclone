@@ -4,7 +4,43 @@
 @import 'base/base';
 @import 'base/typography';
 
-@media (max-width: 768px) {
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  main {
+    flex: 1 0 auto;
+  }
+
+  footer {
+    flex: 0 0 auto;
+  }
+}
+
+.no-padding {
+  @media (min-width: 768px) {
+    padding: 0 !important;
+  }
+}
+
+.lists-wrapper {
+  overflow-y: scroll;
+  height: calc(100vh - 270px);
+
+  @media (max-width: 768px) {
+    min-height: 200px;
+  }
+}
+
+.calendar-wrap {
+  @media (min-width: 768px) {
+    padding-right: calc(var(--bs-gutter-x)/ 2);
+    padding-left: calc(var(--bs-gutter-x)/ 2);
+  }
+}
+
+@media (max-width: 575px) {
   .navbar {
     padding: .5rem;
     z-index: 1;
@@ -21,4 +57,22 @@
     padding: .5rem;
     background: rgb(33, 37, 41);
   }
+}
+
+
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

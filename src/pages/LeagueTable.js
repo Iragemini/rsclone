@@ -5,7 +5,7 @@ function LeagueTable() {
   const { id } = useParams();
   const history = useHistory();
   return (
-      <div>
+      <div className="calendar-wrap">
         {id}
         <button type="button" onClick={() => history.goBack()}>
           Go back

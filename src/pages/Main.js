@@ -60,14 +60,14 @@ function MainPage() {
   };
 
   return (
-    <div className="row">
+    <main className="row">
       <div className="jumbotron text-center">
         <h1>Список матчей на {date.toLocaleDateString()}</h1>
       </div>
       <div className="container">
         <MatchesTable matches={ list } onSort={ onSort } sort={ sort } sortField = { sortField }/>
       </div>
-    </div>
+    </main>
   );
 }
 

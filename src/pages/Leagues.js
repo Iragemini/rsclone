@@ -9,6 +9,8 @@ function Leagues() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [list, setList] = useState([]);
   const [fullList, setfullList] = useState([]);
+  const [searchList, setSearchList] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
   const [areas, setAreas] = useState([]);
   const accessToken = config.APIToken;
   const baseUrl = `${config.baseUrl}competitions`;
@@ -54,20 +56,22 @@ function Leagues() {
 
   const filterList = (value) => {
     const selArea = document.getElementById('selectArea');
-    selArea.selectedIndex = 0;
-    setList(fullList.filter((item) => item.name.toLowerCase().includes(value.toLowerCase())));
+    const currentList = selArea.selectedIndex > 0 ? filteredList : fullList;
+    setList(currentList.filter((item) => item.name.toLowerCase().includes(value.toLowerCase())));
+    setSearchList(fullList.filter((item) => item.name.toLowerCase().includes(value.toLowerCase())));
   };
 
   function findArea(value) {
     if (value === 'Filter') {
-      setList(fullList);
+      setList(searchList);
       return;
     }
-    setList(fullList.filter((item) => item.area.name.toLowerCase().includes(value.toLowerCase())));
+    setList(searchList.filter((item) => item.area.name.toLowerCase().includes(value.toLowerCase())));
+    setFilteredList(fullList.filter((item) => item.area.name.toLowerCase().includes(value.toLowerCase())));
   }
 
   return (
-    <div>
+    <main>
       <div className="jumbotron text-center">
         <h1>Список лиг</h1>
       </div>
@@ -76,7 +80,7 @@ function Leagues() {
         <div className="col-md"><SelectArea areas={Array.from(areas)} findArea={findArea}/></div>
       </div>
       <List list={list} type={ 2 } />
-    </div>
+    </main>
   );
 }
 

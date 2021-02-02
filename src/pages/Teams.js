@@ -54,13 +54,13 @@ function Teams() {
   };
 
   return (
-    <div className="row">
+    <main>
       <div className="jumbotron text-center">
         <h1>Список команд</h1>
         <Search onValueChange={filterList} />
       </div>
       <List list={list} type={ 3 } />
-    </div>
+    </main>
   );
 }
 
