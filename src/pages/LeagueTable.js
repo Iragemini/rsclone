@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import config from '../../config/config';
 
 function LeagueTable() {
   const { id } = useParams();
@@ -13,5 +14,7 @@ function LeagueTable() {
       </div>
   );
 }
+
+
 
 export default LeagueTable;
