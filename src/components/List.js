@@ -25,12 +25,12 @@ function List(props) {
         </div>
       </div>
       <div className="col-md col-md-auto no-padding">
-        <Route path={`${path}/:id`}>
+        <Route path={`${path}/:id`} component=
           {
             props.type === 2
-              ? <LeagueTable />
-              : <TeamTable />
-          }
+              ? LeagueTable
+              : TeamTable
+          }>
         </Route>
       </div>
     </div>
