@@ -76,14 +76,14 @@ function TeamTable() {
 
   return (
       <div className="calendar-wrap">
-        <div className="lists-wrapper">
-          <div className="jumbotron calendar-nav">
-            <button className="btn btn-secondary" onClick={() => history.goBack()}>
-              {id} Go back
-            </button>
-            <Calendar/>
-            <button className="btn btn-secondary" onClick={() => showResults()}>Show</button>
-          </div>
+        <div className="jumbotron calendar-nav">
+          <button className="btn btn-secondary" onClick={() => history.goBack()}>
+            {id} Go back
+          </button>
+          <Calendar/>
+          <button className="btn btn-secondary" onClick={() => showResults()}>Show</button>
+        </div><br />
+        <div className="lists-wrapper lists-wrapper--short">
           <table className="table table-hover table-bordered">
             <thead>
                 <tr className="table-dark">

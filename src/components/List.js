@@ -10,7 +10,7 @@ function List(props) {
 
   return (
     <div className="row">
-      <div className="col-md">
+      <div className="col-lg">
         <div className="lists-wrapper">
           <ul className="list-group">
               {
@@ -24,7 +24,7 @@ function List(props) {
           </ul>
         </div>
       </div>
-      <div className="col-md col-md-auto no-padding">
+      <div className="col-lg col-lg-auto no-padding max50">
         <Route path={`${path}/:id`}>
           {
             props.type === 2

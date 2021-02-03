@@ -58,7 +58,6 @@ export default class Calendar extends React.Component {
             disabledDays: { after: to },
             toMonth: to,
             modifiers,
-            numberOfMonths: 2,
             onDayClick: () => this.to.getInput().focus(),
           }}
           onDayChange={this.handleFromChange}
@@ -72,13 +71,13 @@ export default class Calendar extends React.Component {
             format="LL"
             formatDate={formatDate}
             parseDate={parseDate}
+            showOverlay = {false}
             dayPickerProps={{
               selectedDays: [from, { from, to }],
               disabledDays: { before: from },
               modifiers,
               month: from,
               fromMonth: from,
-              numberOfMonths: 2,
             }}
             onDayChange={this.handleToChange}
           />
