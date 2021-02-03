@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import config from '../../config/config';
 import MatchesTable from './MatchesTable';
 
@@ -16,7 +16,7 @@ function MainPage() {
   const [baseUrl, setBaseUrl] = useState(`${config.baseUrl}matches?dateFrom=${currentDate}&dateTo=${currentDate}`);
   const accessToken = config.APIToken;
 
-  async function fetchData() {
+  const fetchData = useCallback(async () => {
     await fetch(baseUrl,
       {
         type: 'GET',
@@ -38,7 +38,7 @@ function MainPage() {
       ).catch((e) => {
         setErrorMessage(`Ошибка загрузки: ${e.message}`);
       });
-  }
+  }, [baseUrl, accessToken]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -46,7 +46,7 @@ function MainPage() {
     return () => {
       controller.abort();
     };
-  }, [accessToken, baseUrl]);
+  }, [fetchData]);
 
   if (errorMessage) {
     return <div>Ошибка: {errorMessage.message}</div>;
