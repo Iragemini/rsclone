@@ -28,7 +28,7 @@ function List(props) {
         <Route path={`${path}/:id`}>
           {
             props.type === 2
-              ? <LeagueTable />
+              ? <LeagueTable data={props.list}/>
               : <TeamTable />
           }
         </Route>
