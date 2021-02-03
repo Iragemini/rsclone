@@ -62,11 +62,13 @@ function Leagues() {
   };
 
   function findArea(value) {
+    const search = document.getElementById('search');
+    const currentList = search.value ? searchList : fullList;
     if (value === 'Filter') {
-      setList(searchList);
+      setList(currentList);
       return;
     }
-    setList(searchList.filter((item) => item.area.name.toLowerCase().includes(value.toLowerCase())));
+    setList(currentList.filter((item) => item.area.name.toLowerCase().includes(value.toLowerCase())));
     setFilteredList(fullList.filter((item) => item.area.name.toLowerCase().includes(value.toLowerCase())));
   }
 

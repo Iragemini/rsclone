@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import MenuRoutes from './routes/MenuRoutes';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -34,4 +35,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter((props) => <App {...props} />);
