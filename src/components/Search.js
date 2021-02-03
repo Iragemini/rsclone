@@ -9,6 +9,7 @@ const style = {
 function Search(props) {
   return (
     <input
+        id="search"
         className="form-control field__text"
         style={style.input}
         placeholder="Search"
