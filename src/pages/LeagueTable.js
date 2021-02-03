@@ -9,7 +9,7 @@ function LeagueTable({ data }) {
 
   return (
     <div className="calendar-wrap">
-      <table className="table table-hover table-bordered">
+      <table className="table table-hover table-bordered table-league">
         <thead>
             <tr className="table-dark">
                 <th scope="col" >

@@ -49,8 +49,20 @@ h1 {
 }
 
 .no-padding {
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     padding: 0 !important;
+  }
+}
+
+.max50 {
+  @media (min-width: 1024px) {
+    max-width: 50%;
+  }
+}
+
+.table-league {
+  @media (min-width: 1024px) {
+    width: 30vw;
   }
 }
 
@@ -58,17 +70,50 @@ h1 {
   overflow-y: scroll;
   height: calc(100vh - 270px);
 
-  @media (max-width: 768px) {
-    min-height: 200px;
+  @media (max-width: 1024px) {
+    height: 261px;
+  }
+
+  &--short {
+    height: calc(100vh - 331px);
+
+    @media (max-width: 1024px) {
+      height: 200px;
+    }
   }
 }
 
 .calendar-wrap {
-  @media (min-width: 768px) {
+  margin-top: 20px;
+
+  @media (min-width: 1024px) {
+    margin: 0;
     padding-right: calc(var(--bs-gutter-x)/ 2);
     padding-left: calc(var(--bs-gutter-x)/ 2);
   }
 }
+
+.InputFromTo {
+  input {
+    width: 120px;
+
+    @media (max-width: 575px) {
+      font-size: 12px;
+      width: 90px;
+    }
+  }
+}
+
+
+.InputFromTo .DayPickerInput-Overlay {
+  width: 265px !important;
+}
+
+.InputFromTo-to .DayPickerInput-Overlay {
+  left: auto !important;
+  right: 0;
+}
+
 
 @media (max-width: 575px) {
   .navbar {
