@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import config from '../../config/config';
 import Calendar from '../components/Calendar';
@@ -30,35 +30,37 @@ function TeamTable() {
   }
   const [baseUrl, setBaseUrl] = useState(`${config.baseUrl}teams/${id}/matches${filter}`);
 
+  const fetchData = useCallback(async () => {
+    await fetch(baseUrl,
+      {
+        type: 'GET',
+        headers: {
+          'X-Auth-Token': accessToken,
+        },
+        dataType: 'json',
+      })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setList(result.matches);
+        },
+        (error) => {
+          setErrorMessage(error);
+        },
+      ).catch((e) => {
+        setErrorMessage(`Ошибка загрузки: ${e.message}`);
+      });
+  }, [baseUrl, accessToken]);
+
   useEffect(() => {
     const controller = new AbortController();
-    async function fetchData() {
-      await fetch(baseUrl,
-        {
-          type: 'GET',
-          headers: {
-            'X-Auth-Token': accessToken,
-          },
-          dataType: 'json',
-        })
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            setIsLoaded(true);
-            setList(result.matches);
-          },
-          (error) => {
-            setErrorMessage(error);
-          },
-        ).catch((e) => {
-          setErrorMessage(`Ошибка загрузки: ${e.message}`);
-        });
-    }
+
     fetchData();
     return () => {
       controller.abort();
     };
-  }, [accessToken, baseUrl, id]);
+  }, [fetchData]);
 
   if (errorMessage) {
     return <div>Ошибка: {errorMessage.message}</div>;
@@ -108,53 +110,53 @@ function TeamTable() {
           </thead>
           <tbody>
               {
-                  list.map((match) => (
-                      <tr key={match.id}
-                          className={
-                              match.status.toUpperCase() === 'FINISHED'
-                                ? 'table-secondary'
-                                : match.status.toUpperCase() === 'IN_PLAY'
-                                  ? 'table-success'
-                                  : match.status.toUpperCase() === 'PAUSED'
-                                    ? 'table-danger'
-                                    : 'table-info'
-                          }
-                      >
-                          <td>
-                              <div>
-                                  <p>{new Date(match.utcDate).toLocaleDateString()}</p>
-                                  <p>{new Date(match.utcDate).toLocaleTimeString('en-US', { timeZone: 'UTC', timeZoneName: 'short' })}</p>
-                              </div>
-                          </td>
-                          <td>
-                              {
-                                  `${match.homeTeam.name} — ${match.awayTeam.name}`
-                              }
-                          </td>
-                          <td>
+                list.map((match) => (
+                  <tr key={match.id}
+                      className={
+                          match.status.toUpperCase() === 'FINISHED'
+                            ? 'table-secondary'
+                            : match.status.toUpperCase() === 'IN_PLAY'
+                              ? 'table-success'
+                              : match.status.toUpperCase() === 'PAUSED'
+                                ? 'table-danger'
+                                : 'table-info'
+                      }
+                  >
+                      <td>
+                          <div>
+                              <p>{new Date(match.utcDate).toLocaleDateString()}</p>
+                              <p>{new Date(match.utcDate).toLocaleTimeString('en-US', { timeZone: 'UTC', timeZoneName: 'short' })}</p>
+                          </div>
+                      </td>
+                      <td>
                           {
-                              match.status.toUpperCase() === 'FINISHED'
-                                ? <div>
-                                      <p>
-                                          {
-                                              match.score.winner.toUpperCase() === 'HOME_TEAM'
-                                                ? `Winner: ${match.homeTeam.name}`
-                                                : match.score.winner.toUpperCase() === 'AWAY_TEAM'
-                                                  ? `Winner: ${match.awayTeam.name}`
-                                                  : `Winner: ${match.score.winner}`
-                                          }
-                                      </p>
-                                      <p>
-                                          {
-                                              `Duration: ${match.score.duration}`
-                                          }
-                                      </p>
-                                  </div>
-                                : null
+                              `${match.homeTeam.name} — ${match.awayTeam.name}`
                           }
-                          </td>
-                      </tr>
-                  ))
+                      </td>
+                      <td>
+                      {
+                          match.status.toUpperCase() === 'FINISHED'
+                            ? <div>
+                                  <p>
+                                      {
+                                          match.score.winner.toUpperCase() === 'HOME_TEAM'
+                                            ? `Winner: ${match.homeTeam.name}`
+                                            : match.score.winner.toUpperCase() === 'AWAY_TEAM'
+                                              ? `Winner: ${match.awayTeam.name}`
+                                              : `Winner: ${match.score.winner}`
+                                      }
+                                  </p>
+                                  <p>
+                                      {
+                                          `Duration: ${match.score.duration}`
+                                      }
+                                  </p>
+                              </div>
+                            : null
+                      }
+                      </td>
+                  </tr>
+                ))
               }
           </tbody>
         </table>
