@@ -1,0 +1,168 @@
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+
+@import 'base/base';
+@import 'base/typography';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  main {
+    flex: 1 0 auto;
+  }
+
+  footer {
+    flex: 0 0 auto;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  img {
+    width: 60px; 
+    height: auto;
+  }
+
+  a {
+    text-decoration: none;
+    color: #555;
+    margin-left: 10px;
+  }
+}
+
+h1 {
+  margin: .5rem 0;
+}
+
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+
+  &__arr {
+    padding: 0 20px;
+    border: none;
+    background: transparent;
+    font-size: 30px;
+    transition: transform .3s;
+    outline: none !important;
+
+    &:hover {
+      transform: scale(1.1)
+    }
+  }
+}
+
+.day-table {
+  th {
+    white-space: nowrap;
+  }
+}
+
+.no-padding {
+  @media (min-width: 1024px) {
+    padding: 0 !important;
+  }
+}
+
+.max50 {
+  @media (min-width: 1024px) {
+    max-width: 50%;
+  }
+}
+
+.table-league {
+  @media (min-width: 1024px) {
+    width: 30vw;
+  }
+}
+
+.lists-wrapper {
+  overflow-y: scroll;
+  height: calc(100vh - 270px);
+
+  @media (max-width: 1024px) {
+    height: 261px;
+  }
+
+  &--short {
+    height: calc(100vh - 331px);
+
+    @media (max-width: 1024px) {
+      height: 200px;
+    }
+  }
+}
+
+.calendar-wrap {
+  margin-top: 20px;
+
+  @media (min-width: 1024px) {
+    margin: 0;
+    padding-right: calc(var(--bs-gutter-x)/ 2);
+    padding-left: calc(var(--bs-gutter-x)/ 2);
+  }
+}
+
+.InputFromTo {
+  input {
+    width: 120px;
+
+    @media (max-width: 575px) {
+      font-size: 12px;
+      width: 90px;
+    }
+  }
+}
+
+
+.InputFromTo .DayPickerInput-Overlay {
+  width: 265px !important;
+}
+
+.InputFromTo-to .DayPickerInput-Overlay {
+  left: auto !important;
+  right: 0;
+}
+
+
+@media (max-width: 575px) {
+  .navbar {
+    padding: .5rem;
+    z-index: 1;
+  }
+
+  .navbar-toggler:focus {
+    box-shadow: none;
+  }
+
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    padding: .5rem;
+    background: rgb(33, 37, 41);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
